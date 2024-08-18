@@ -24,13 +24,14 @@ namespace Menu.Controllers
             var dish = await _menuDbContext.Dishes
                 .Include(di => di.DishIngredients)
                 .ThenInclude(di => di.Ingredient)
-                .FirstOrDefaultAsync(di => di.Id==id);
+                .FirstOrDefaultAsync(di => di.Id == id);
 
-            if (dish != null)
+            if (dish == null)
             {
                 return NotFound();
             }
             return View(dish);
         }
+
     }
 }
