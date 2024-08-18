@@ -15,6 +15,9 @@ The **Menu Management System** is a .NET Core web application designed for resta
   
 - **Data Seeding**: 
   - Pre-populated with popular Nigerian dishes and their ingredients.
+
+- **Dish Searching**: 
+  - Search for dish by name.
   
 - **Responsive UI**: 
   - A clean and responsive user interface for easy navigation and management.
