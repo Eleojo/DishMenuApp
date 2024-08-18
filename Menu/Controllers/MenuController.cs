@@ -14,9 +14,16 @@ namespace Menu.Controllers
             _menuDbContext = menuDbContext;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _menuDbContext.Dishes.ToListAsync());
+            var dishes = from d in _menuDbContext.Dishes select d;
+
+            if(!string.IsNullOrEmpty(searchString))
+            {
+                dishes = dishes.Where(d => d.Name.Contains(searchString));
+            }
+                
+            return View(await dishes.ToListAsync());
         }
 
         public async Task<IActionResult> Details(Guid id)
