@@ -1,22 +1,58 @@
 ﻿@model List<Menu.Models.Dish>
 @{
-    ViewData["Title"] = "MenuIndex";
+    ViewData["Title"] = "Menu Index";
 }
 
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         @foreach (var item in Model)
         {
             <div class="col-md-4 mb-4">
-                <div class="card border-0 shadow-sm">
-                    <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name" style="object-fit: cover; height: 200px;" />
+                <div class="card border-0 rounded-lg shadow-lg transform-hover">
+                    <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name" style="object-fit: cover; height: 300px;" />
                     <div class="card-body text-center">
-                        <h5 class="card-title">@item.Name</h5>
-                        <p class="card-text">@item.Price.ToString("N2") NGN</p>
-                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Dish Details</a>
+                        <h5 class="card-title text-dark mb-2">@item.Name</h5>
+                        <p class="card-text text-secondary mb-3">@item.Price.ToString("N2") NGN</p>
+                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">View Details</a>
                     </div>
                 </div>
             </div>
         }
     </div>
 </div>
+
+<!-- Optional: Add custom CSS for further customization -->
+<style>
+    .card {
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .transform-hover:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-img-top {
+        border-bottom: 2px solid #f1f1f1;
+    }
+
+    .card-body {
+        background-color: #fff;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+</style>

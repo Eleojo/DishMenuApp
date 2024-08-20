@@ -1,4 +1,5 @@
 using Menu.Data;
+using Menu.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Menu
@@ -9,6 +10,8 @@ namespace Menu
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
+            builder.Services.AddScoped<ICreateDishService, CreateDishService>();
             // Add DbContext
             builder.Services.AddDbContext<MenuDbContext>(options => 
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
