@@ -8,9 +8,9 @@ namespace Menu.Controllers
 {
     public class CreateController : Controller
     {
-        private readonly ICreateDishService _createDishService;
+        private readonly IDishCreationService _createDishService;
 
-        public CreateController(ICreateDishService createDishService)
+        public CreateController(IDishCreationService createDishService)
         {
             _createDishService = createDishService;
         }
@@ -28,13 +28,24 @@ namespace Menu.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(DishDTO dishDTO)
         {
-            if (ModelState.IsValid)
+            if (dishDTO == null)
             {
-                await _createDishService.CreateDish(dishDTO);
-                return RedirectToAction("Index", "Home"); // Redirect to a valid action
+                return BadRequest("Dish data is null.");
             }
 
-            return View(dishDTO); // Return view with errors if model state is invalid
+            if (!ModelState.IsValid)
+            {
+                return View(dishDTO); 
+            }
+
+            var dishCreated = await _createDishService.CreateDishAsync(dishDTO);
+
+            if (dishCreated)
+            {
+                return RedirectToAction("Index", "Home"); 
+            }
+
+            return BadRequest("Failed to create the dish. Please try again."); 
         }
     }
 }

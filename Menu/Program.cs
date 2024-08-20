@@ -11,7 +11,7 @@ namespace Menu
             var builder = WebApplication.CreateBuilder(args);
 
 
-            builder.Services.AddScoped<ICreateDishService, CreateDishService>();
+            builder.Services.AddScoped<IDishCreationService, DishCreationService>();
             // Add DbContext
             builder.Services.AddDbContext<MenuDbContext>(options => 
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
