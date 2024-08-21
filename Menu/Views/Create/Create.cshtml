@@ -1,33 +1,69 @@
 ﻿@model DishDTO
 
-<form asp-action="Create" method="post">
+<form asp-action="Create" method="post" class="container mt-5">
     @Html.AntiForgeryToken()
-    
-    <div class="form-group">
-        <label asp-for="Name" class="control-label"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="form-group">
+                <label asp-for="Name" class="form-label">Dish Name</label>
+                <input asp-for="Name" class="form-control form-control-lg" placeholder="Enter the dish name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="form-label">Image URL</label>
+                <input asp-for="ImageUrl" class="form-control form-control-lg" placeholder="Enter the image URL" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="form-group">
+                <label asp-for="Price" class="form-label">Price</label>
+                <input asp-for="Price" class="form-control form-control-lg" placeholder="Enter the price" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="form-group">
+                <label asp-for="IngredientNames" class="form-label">Ingredients</label>
+                <input asp-for="IngredientNames" class="form-control form-control-lg" placeholder="Enter ingredients separated by commas" />
+                <span asp-validation-for="IngredientNames" class="text-danger"></span>
+            </div>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label asp-for="ImageUrl" class="control-label"></label>
-        <input asp-for="ImageUrl" class="form-control" />
-        <span asp-validation-for="ImageUrl" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Price" class="control-label"></label>
-        <input asp-for="Price" class="form-control" />
-        <span asp-validation-for="Price" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="IngredientNames" class="control-label"></label>
-        <input asp-for="IngredientNames" class="form-control" placeholder="Enter ingredients separated by commas" />
-        <span asp-validation-for="IngredientNames" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary btn-lg">Create Dish</button>
     </div>
 </form>
+
+<!-- Add some custom CSS if needed -->
+<style>
+    .form-label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .form-control-lg {
+        height: calc(2.5rem + 2px);
+        font-size: 1.25rem;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        font-size: 1.125rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.375rem;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+</style>
